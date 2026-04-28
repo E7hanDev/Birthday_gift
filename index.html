@@ -3,28 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday CAPTAIN M</title>
+    <title>HB CAPTAIN M</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body, html {
-            height: 100%;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body, html { 
+            height: 100%; 
+            font-family: 'Inter', sans-serif; 
+            background-color: #000; 
+            color: white; 
             overflow: hidden;
-            background-color: #000;
-            color: white;
-            text-align: center;
         }
 
-        /* Background Image Slider */
+        /* The Background Slider */
         .bg-slider {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
@@ -36,111 +29,105 @@
             height: 100%;
             background-size: cover;
             background-position: center;
+            filter: brightness(0.6); /* Makes text pop */
             opacity: 0;
-            animation: imageFade 10s infinite;
+            animation: crossfade 12s infinite;
         }
 
-        /* Set Background Images */
-        .img-a { background-image: url('A.jpg'); } /* Ensure image is named A.jpg */
-        .img-b { background-image: url('B.jpg'); animation-delay: 5s; } /* Ensure image is named B.jpg */
+        /* Update these names if your files are different! */
+        .img1 { background-image: url('A.jpg'); } 
+        .img2 { background-image: url('B.jpg'); animation-delay: 6s; }
 
-        @keyframes imageFade {
-            0% { opacity: 0; }
-            20% { opacity: 0.4; } /* Darker overlay for text readability */
-            50% { opacity: 0.4; }
-            70% { opacity: 0; }
+        @keyframes crossfade {
+            0% { opacity: 0; transform: scale(1.1); }
+            15% { opacity: 1; }
+            50% { opacity: 1; }
+            65% { opacity: 0; transform: scale(1); }
             100% { opacity: 0; }
         }
 
-        /* Dark Overlay Overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 0;
-        }
-
-        /* Main Content */
+        /* Center Content */
         .container {
-            position: relative;
-            z-index: 1;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
+        }
+
+        /* Glass Card for "Effort" Look */
+        .glass-card {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 4s ease-in-out infinite;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         h1 {
-            font-size: 5rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 10px;
-            margin-bottom: 10px;
+            letter-spacing: 15px;
+            margin-bottom: 5px;
+            line-height: 1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 300;
-            margin-bottom: 40px;
-            letter-spacing: 4px;
-        }
-
-        .bottom-text {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 8px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-top: 20px;
-            opacity: 0.8;
+            margin-bottom: 30px;
+            color: #ddd;
         }
 
-        .divider {
-            width: 50px;
-            height: 2px;
-            background: white;
-            margin: 20px 0;
+        .line {
+            width: 60px;
+            height: 3px;
+            background: #fff;
+            margin: 20px auto;
+            border-radius: 10px;
         }
 
-        /* Subtle Animation for Text */
-        .fade-in {
-            animation: fadeInText 2s ease-in forwards;
+        .sub-text {
+            font-size: 1rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin: 15px 0;
+            opacity: 0.7;
         }
 
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            h2 { font-size: 1.5rem; }
-            .bottom-text { font-size: 0.9rem; }
-        }
     </style>
 </head>
 <body>
 
     <div class="bg-slider">
-        <div class="bg-img img-a"></div>
-        <div class="bg-img img-b"></div>
+        <div class="bg-img img1"></div>
+        <div class="bg-img img2"></div>
     </div>
-    <div class="overlay"></div>
 
-    <div class="container fade-in">
-        <h1>CAPTAIN M</h1>
-        <h2>Happy Birthday</h2>
-        
-        <div class="divider"></div>
+    <div class="container">
+        <div class="glass-card">
+            <h1>CAPTAIN<br>M</h1>
+            <h2>Happy Birthday</h2>
+            
+            <div class="line"></div>
 
-        <div class="bottom-text">Day One</div>
-        <div class="bottom-text" style="margin-top: 10px;">Built Different</div>
+            <div class="sub-text">Day One</div>
+            <div class="sub-text">Built Different</div>
+        </div>
     </div>
 
 </body>
 </html>
+
 
