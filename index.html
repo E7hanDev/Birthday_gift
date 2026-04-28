@@ -3,131 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HB CAPTAIN M</title>
+    <title>Birthday Experience | CAPTAIN M</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Montserrat:wght@300;900&display=swap');
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body, html { 
             height: 100%; 
-            font-family: 'Inter', sans-serif; 
-            background-color: #000; 
-            color: white; 
+            background-color: #050505; 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif;
             overflow: hidden;
         }
 
-        /* The Background Slider */
+        /* Initial Overlay Screen */
+        #entry-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease-out;
+        }
+
+        .start-btn {
+            padding: 15px 40px;
+            background: none;
+            border: 2px solid #d4af37; /* Gold */
+            color: #d4af37;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .start-btn:hover {
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Background Slider */
         .bg-slider {
             position: fixed;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
         }
 
         .bg-img {
             position: absolute;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.6); /* Makes text pop */
+            filter: brightness(0.4) saturate(1.2);
             opacity: 0;
-            animation: crossfade 12s infinite;
+            animation: kenBurns 12s infinite ease-in-out;
         }
 
-        /* Update these names if your files are different! */
-        .img1 { background-image: url('A.jpg'); } 
-        .img2 { background-image: url('B.jpg'); animation-delay: 6s; }
+        .img1 { background-image: url('./A.jpg'); } 
+        .img2 { background-image: url('./B.jpg'); animation-delay: 6s; }
 
-        @keyframes crossfade {
-            0% { opacity: 0; transform: scale(1.1); }
+        @keyframes kenBurns {
+            0% { opacity: 0; transform: scale(1.2); }
             15% { opacity: 1; }
-            50% { opacity: 1; }
-            65% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1); }
+            65% { opacity: 0; }
             100% { opacity: 0; }
         }
 
-        /* Center Content */
-        .container {
+        /* Main Experience Container */
+        .main-content {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
-        }
-
-        /* Glass Card for "Effort" Look */
-        .glass-card {
-            backdrop-filter: blur(8px);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: float 4s ease-in-out infinite;
             text-align: center;
-            max-width: 90%;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            opacity: 0;
+            transition: opacity 2s ease-in;
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            letter-spacing: 15px;
-            margin-bottom: 5px;
-            line-height: 1;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(3rem, 15vw, 7.5rem);
+            line-height: 0.9;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 20%, #d4af37 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
         }
 
         h2 {
-            font-size: 1.5rem;
             font-weight: 300;
-            letter-spacing: 5px;
+            letter-spacing: 10px;
             text-transform: uppercase;
-            margin-bottom: 30px;
-            color: #ddd;
+            color: #fff;
+            margin-bottom: 40px;
         }
 
-        .line {
-            width: 60px;
-            height: 3px;
-            background: #fff;
-            margin: 20px auto;
-            border-radius: 10px;
+        .gold-line {
+            width: 100px;
+            height: 1px;
+            background: #d4af37;
+            margin: 20px 0;
+            box-shadow: 0 0 10px #d4af37;
         }
 
-        .sub-text {
-            font-size: 1rem;
-            letter-spacing: 6px;
+        .taglines {
+            font-size: 0.8rem;
+            letter-spacing: 7px;
+            color: #aaa;
             text-transform: uppercase;
-            margin: 15px 0;
-            opacity: 0.7;
+            margin: 10px 0;
+            animation: fadeIn 3s ease-in forwards;
+        }
+
+        /* Confetti Canvas */
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
         }
 
     </style>
 </head>
 <body>
 
+    <div id="entry-screen">
+        <button class="start-btn" onclick="startExperience()">Open Gift</button>
+    </div>
+
+    <canvas id="confetti"></canvas>
+
     <div class="bg-slider">
         <div class="bg-img img1"></div>
         <div class="bg-img img2"></div>
     </div>
 
-    <div class="container">
-        <div class="glass-card">
-            <h1>CAPTAIN<br>M</h1>
-            <h2>Happy Birthday</h2>
-            
-            <div class="line"></div>
+    <div class="main-content" id="main">
+        <h1>CAPTAIN<br>M</h1>
+        <h2>Happy Birthday</h2>
+        
+        <div class="gold-line"></div>
 
-            <div class="sub-text">Day One</div>
-            <div class="sub-text">Built Different</div>
-        </div>
+        <p class="taglines">Day One</p>
+        <p class="taglines">Built Different</p>
     </div>
 
+    <script>
+        function startExperience() {
+            document.getElementById('entry-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('entry-screen').style.display = 'none';
+                document.getElementById('main').style.opacity = '1';
+                initConfetti();
+            }, 1500);
+        }
+
+        // Simple Confetti Generator
+        function initConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let pieces = [];
+            const numberOfPieces = 150;
+            const colors = ['#fcfcfc', '#d4af37', '#aa8939'];
+
+            class Confetto {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height - canvas.height;
+                    this.rotation = Math.random() * 360;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.size = Math.random() * 7 + 4;
+                    this.speed = Math.random() * 3 + 2;
+                }
+                update() {
+                    this.y += this.speed;
+                    this.rotation += 1;
+                    if (this.y > canvas.height) this.y = -20;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.fillStyle = this.color;
+                    ctx.fillRect(-this.size/2, -this.size/2, this.size, this.size);
+                    ctx.restore();
+                }
+            }
+
+            for (let i = 0; i < numberOfPieces; i++) pieces.push(new Confetto());
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pieces.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
 </body>
 </html>
-
-
