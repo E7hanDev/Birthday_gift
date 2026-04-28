@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Captain M</title>
+    <title>Birthday Experience | CAPTAIN M</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Montserrat:wght@300;900&display=swap');
 
@@ -17,7 +17,7 @@
             overflow-x: hidden;
         }
 
-        /* Preloader */
+        /* Stage 1: Loader */
         #loader-screen {
             position: fixed;
             inset: 0;
@@ -27,30 +27,36 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            transition: opacity 1s;
         }
 
         .loader-text {
             font-family: 'Syncopate', sans-serif;
             color: #d4af37;
             letter-spacing: 5px;
-            margin-top: 20px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            animation: pulse 1.5s infinite;
         }
 
-        /* Entry Screen */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Stage 2: Entry */
         #entry-screen {
             position: fixed;
             inset: 0;
             z-index: 100;
             background: #000;
-            display: none; /* Shown via JS */
+            display: none; 
             justify-content: center;
             align-items: center;
-            transition: opacity 1.5s ease-out;
+            transition: opacity 1s;
         }
 
         .start-btn {
-            padding: 15px 40px;
+            padding: 18px 45px;
             background: none;
             border: 2px solid #d4af37;
             color: #d4af37;
@@ -58,64 +64,74 @@
             letter-spacing: 5px;
             cursor: pointer;
             text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.4s;
         }
 
-        /* Background */
+        .start-btn:hover {
+            background: #d4af37;
+            color: #000;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Stage 3: Background & Content */
         .bg-slider { position: fixed; inset: 0; z-index: -1; }
         .bg-img {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
-            filter: brightness(0.3);
+            filter: brightness(0.35);
             opacity: 0;
             animation: kenBurns 12s infinite ease-in-out;
         }
+
+        /* FORCING LOWERCASE NAMES */
         .img1 { background-image: url('./image1.jpg'); } 
         .img2 { background-image: url('./image2.jpg'); animation-delay: 6s; }
 
         @keyframes kenBurns {
-            0% { opacity: 0; transform: scale(1.2); }
+            0% { opacity: 0; transform: scale(1.15); }
             15% { opacity: 1; }
             50% { opacity: 1; transform: scale(1); }
             65% { opacity: 0; }
             100% { opacity: 0; }
         }
 
-        /* Content */
         .main-content {
             min-height: 100vh;
-            display: flex;
+            display: none; /* Shown via JS */
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            opacity: 0;
-            padding: 40px 20px;
+            padding: 40px 25px;
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2.5rem, 12vw, 6rem);
-            background: linear-gradient(to bottom, #fff, #d4af37);
+            font-size: clamp(2.2rem, 12vw, 6rem);
+            background: linear-gradient(to bottom, #ffffff, #d4af37);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 8px;
         }
 
         .letter-box {
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            margin-top: 30px;
+            max-width: 550px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
             line-height: 1.8;
-            color: #ddd;
+            color: #ececec;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .letter-box b { color: #d4af37; }
+        .letter-box b { color: #d4af37; font-weight: 900; }
+        .letter-box p { margin-bottom: 15px; font-size: 1.05rem; }
 
         #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
     </style>
@@ -123,7 +139,7 @@
 <body>
 
     <div id="loader-screen">
-        <div class="loader-text">PREPARING SURPRISE...</div>
+        <div class="loader-text">SYNCING SURPRISE...</div>
     </div>
 
     <div id="entry-screen">
@@ -138,3 +154,96 @@
     </div>
 
     <div class="main-content" id="main">
+        <h1>CAPTAIN M</h1>
+        <div class="letter-box">
+            <p>Happy Birthday, <b>Captain M</b>!</p>
+            
+            <p>I know I’m a bit late with this, but you know what they say—<b>late is better than never</b>, especially for someone who’s truly <b>Built Different</b>.</p>
+            
+            <p>A year older, a year wiser, and still leading with that <b>Day One</b> energy that sets you apart. You aren't just following the path; you're carving your own. This is your season to level up, stay focused, and keep showing everyone what it means to be a real one.</p>
+            
+            <p>Hope your day was as legendary as the impact you have on everyone around you. Keep that momentum going—the world isn't ready for what's next.</p>
+            
+            <p style="margin-top: 25px; font-size: 0.75rem; opacity: 0.4; letter-spacing: 3px;">HBD CAPTAIN M</p>
+        </div>
+    </div>
+
+    <script>
+        // FORCED LOADING SCRIPT
+        const imgSources = ["./image1.jpg", "./image2.jpg"];
+        let loaded = 0;
+
+        // Force a timeout: If images don't load in 5 seconds, show the button anyway
+        const forceTimer = setTimeout(() => {
+            console.log("Forcing start due to timeout...");
+            showEntry();
+        }, 5000);
+
+        imgSources.forEach(src => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                loaded++;
+                if (loaded === imgSources.length) {
+                    clearTimeout(forceTimer);
+                    showEntry();
+                }
+            };
+        });
+
+        function showEntry() {
+            document.getElementById('loader-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('loader-screen').style.display = 'none';
+                document.getElementById('entry-screen').style.display = 'flex';
+            }, 1000);
+        }
+
+        function startExperience() {
+            document.getElementById('entry-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('entry-screen').style.display = 'none';
+                const main = document.getElementById('main');
+                main.style.display = 'flex';
+                setTimeout(() => { main.style.opacity = '1'; }, 100);
+                initConfetti();
+            }, 1000);
+        }
+
+        function initConfetti() {
+            const canvas = document.getElementById('confetti');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let pieces = [];
+            for (let i = 0; i < 120; i++) {
+                pieces.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    s: Math.random() * 5 + 3,
+                    c: ['#ffffff', '#d4af37', '#aa8939'][Math.floor(Math.random()*3)],
+                    v: Math.random() * 2 + 2,
+                    r: Math.random() * 360
+                });
+            }
+            function draw() {
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                pieces.forEach(p => {
+                    p.y += p.v;
+                    p.r += 1;
+                    if(p.y > canvas.height) p.y = -20;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.r * Math.PI / 180);
+                    ctx.fillStyle = p.c;
+                    ctx.fillRect(-p.s/2, -p.s/2, p.s, p.s);
+                    ctx.restore();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+    </script>
+</body>
+</html>
+
